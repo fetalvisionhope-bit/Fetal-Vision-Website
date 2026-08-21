@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="Fetal Vision, Sonography, Fetal Medicine Centre, CME, Doctor's Workshop, IVF">
+    <meta name="description" content="Fetal Medicine Centre in Vapi, Gujurat that also conducts CME Workshops, provides infertility treatment in association with Hope IVF">
+    <title>Fetal Vision | Fetal Medicine & Training Centre</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link rel="icon" type="image/jpg" href="Favicon.png">
+    <style>
+        :root {
+            --primary-blue: #2563eb;
+            --soft-pink: #fdf2f8;
+            --deep-purple: #581c87;
+        }
+        
+        body {
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        .gradient-hero {
+            background: linear-gradient(135deg, #eff6ff 0%, #fdf2f8 50%, #f5f3ff 100%);
+        }
+
+        .gradient-text {
+            background: linear-gradient(to right, #2563eb, #7c3aed, #db2777);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .nav-link {
+            transition: color 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: #d946ef;
+        }
+
+        .card-hover {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .card-hover:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Modal Sub-Page Styling */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(15, 23, 42, 0.75);
+            z-index: 1000;
+            backdrop-filter: blur(8px);
+            overflow-y: auto;
+        }
+
+        .active-page {
+            display: flex !important;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Responsive Iframe Container for Google Forms */
+        .form-container {
+            position: relative;
+            overflow: hidden;
+            width: 100%;
+            min-height: 550px;
+        }
+
+        .form-container iframe {
+            width: 100%;
+            height: 550px;
+            border: none;
+        }
+
+        /* Slideshow transition */
+        .slide {
+            display: none;
+            opacity: 0;
+            transition: opacity 0.6s ease-in-out;
+        }
+        .slide.active {
+            display: block;
+            opacity: 1;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800 antialiased">
+
+    <!-- Navigation Header -->
+    <nav class="fixed w-full z-50 bg-white/90 backdrop-blur-md border-b border-purple-100 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-20 items-center">
+                <!-- Brand Name & Icon -->
+                <a href="#home" class="flex items-center space-x-3 group">
+                    <div class="w-12 h-12 rounded-2xl flex items-center justify-center text-white font-bold shadow-md group-hover:scale-105 transition-transform">
+                        <img src="Fetal Vision Logo.png">
+                    </div>
+                    <div class="flex flex-col">
+                        <span class="text-2xl font-black gradient-text tracking-tight">Fetal Vision</span>
+                        <span class="text-[10px] tracking-widest uppercase font-bold text-purple-700">A Unit of Ashwini Healthcare</span>
+                    </div>
+                </a>
+                
+                <!-- Desktop Navigation -->
+                <div class="hidden md:flex items-center space-x-8 font-semibold text-gray-700 text-sm">
+                    <a href="#home" class="nav-link">Home</a>
+                    <a href="#about" class="nav-link">About Us</a>
+                    <a href="#tour" class="nav-link">Centre Tour</a>
+                    <a href="#facilities" class="nav-link">Facilities</a>
+                    <a href="#booking" class="bg-blue-50 text-blue-600 px-4 py-2 rounded-full border border-blue-200 hover:bg-blue-600 hover:text-white transition-all">Patient Booking</a>
+                    <a href="#training" class="bg-purple-600 text-white px-5 py-2 rounded-full shadow-md hover:bg-purple-700 transition-all">CME Training Programs</a>
+                </div>
+
+                <!-- Mobile Navigation Button -->
+                <div class="md:hidden">
+                    <button id="mobile-menu-btn" onclick="toggleMobileMenu()" class="text-gray-700 p-2 focus:outline-none">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Dropdown -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-b border-purple-100 px-4 pt-2 pb-6 space-y-3">
+            <a href="#home" onclick="toggleMobileMenu()" class="block py-2 text-gray-700 font-medium">Home</a>
+            <a href="#about" onclick="toggleMobileMenu()" class="block py-2 text-gray-700 font-medium">About Us</a>
+            <a href="#tour" onclick="toggleMobileMenu()" class="block py-2 text-gray-700 font-medium">Centre Tour</a>
+            <a href="#facilities" onclick="toggleMobileMenu()" class="block py-2 text-gray-700 font-medium">Facilities</a>
+            <a href="#booking" onclick="toggleMobileMenu()" class="block text-center bg-blue-50 text-blue-600 py-3 rounded-xl font-semibold">Patient Booking</a>
+            <a href="#training" onclick="toggleMobileMenu()" class="block text-center bg-purple-600 text-white py-3 rounded-xl font-semibold">CME Training Programs</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="pt-32 pb-20 gradient-hero">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between">
+            <div class="md:w-1/2 space-y-6 text-center md:text-left">
+                <div class="inline-flex items-center space-x-2 bg-brown-100/80 text-brown-800 text-xs font-bold px-3 py-1.5 rounded-full uppercase tracking-wider">
+                    <img src="Ashwini Healthcare Logo.jpeg" style="border-radius: 50%;" height="100" width="100">
+                    <span>A Unit of Ashwini Healthcare</span>
+                </div>
+                <h1 class="text-4xl sm:text-5xl md:text-6xl font-black leading-tight text-gray-900">
+                    Your <span class="text-blue-600">Fetus</span>,<br>
+                    Our <span class="text-purple-600">Care</span>
+                </h1>
+                <p class="text-base sm:text-lg text-gray-600 max-w-xl mx-auto md:mx-0 leading-relaxed">
+                    Welcome to <strong>Fetal Vision</strong>, an advanced diagnostic centre specializing in high-risk pregnancy imaging, targeted fetal scans, and accredited medical training programs for doctors and sonographers.
+                </p>
+                <div class="flex flex-col sm:flex-row items-center justify-center md:justify-start gap-4 pt-2">
+                    <a href="#booking" class="w-full sm:w-auto text-center bg-blue-600 hover:bg-blue-700 text-white px-8 py-3.5 rounded-full font-bold shadow-lg shadow-blue-500/20 transition-all">
+                        <i class="fas fa-calendar-check mr-2"></i> Book Appointment
+                    </a>
+                    <a href="#training" class="w-full sm:w-auto text-center bg-purple-600 hover:bg-purple-700 text-white px-8 py-3.5 rounded-full font-bold shadow-lg shadow-purple-500/20 transition-all">
+                        <i class="fas fa-user-graduate mr-2"></i> CME Training Programs
+                    </a>
+                </div>
+            </div>
+
+            <!-- Hero Graphic Container with Photo -->
+            <div class="md:w-5/12 mt-12 md:mt-0 w-full">
+                <div class="relative w-full h-[360px] sm:h-[420px] bg-white p-3 rounded-3xl shadow-2xl border border-purple-100 overflow-hidden group">
+                    <img src="FVWebsite.png" alt="Fetal Vision Centre Graphic" class="w-100% h-100% object-cover rounded-2xl group-hover:scale-105 transition-transform duration-500" onerror="this.src='https://placehold.co/600x450/2563eb/ffffff?text=Fetal+Vision+Centre'">
+                    <div class="absolute inset-x-4 bottom-4 bg-white/90 backdrop-blur-md p-4 rounded-xl border border-white/50 shadow-lg text-center">
+                        <h3 class="text-sm font-bold text-gray-900">Advanced Fetal Diagnostic Centre</h3>
+                        <p class="text-xs text-gray-500 mt-0.5">High-Precision Ultrasound & Clinical Training</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Us Section (Doctor Introductions) -->
+    <section id="about" class="py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <span class="text-purple-600 font-bold uppercase tracking-wider text-xs">Medical Leadership</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-gray-900 mt-1">Meet Our Specialists</h2>
+                <div class="w-20 h-1 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 mx-auto mt-4 rounded-full"></div>
+                <p class="text-gray-600 max-w-2xl mx-auto mt-4 text-sm sm:text-base">Our centre is headed by highly qualified specialists dedicated to comprehensive fetal diagnosis and academic excellence in fetal medicine.</p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-10">
+                <!-- Doctor 1 Card -->
+                <div class="flex flex-col sm:flex-row items-center bg-gradient-to-br from-pink-50/50 to-white rounded-3xl p-8 border border-pink-100 card-hover">
+                    <div class="w-40 h-40 bg-pink-100 rounded-2xl mb-6 sm:mb-0 sm:mr-8 flex-shrink-0 flex items-center justify-center shadow-inner">
+                        <img src="Ramdas.jpeg" alt="Dr. Ramdas Image" class="w-full h-full object-cover object-center opacity-90" onerror="this.src='https://placehold.co/900x500/1e293b/ffffff?text=Fetal+Vision+Reception'">
+                    </div>
+                    <div class="text-center sm:text-left">
+                        <span class="text-xs font-bold uppercase tracking-wider text-pink-600 bg-pink-100/60 px-3 py-1 rounded-full">Director of Academic Training</span>
+                        <h3 class="text-2xl font-bold text-gray-900 mt-2">Dr. Ramdas Narasimha</h3>
+                        <p class="text-xs font-semibold text-purple-700 mb-3">MBBS, DGO, Fetal Medicine Specialist</p>
+                        <p class="text-sm text-gray-600 leading-relaxed">Over 35 years of clinical expertise in high-risk maternal-fetal care, specialized target scans, genetic counseling, and infertility treatment.</p>
+                    </div>
+                </div>
+
+                <!-- Doctor 2 Card -->
+                <div class="flex flex-col sm:flex-row items-center bg-gradient-to-br from-blue-50/50 to-white rounded-3xl p-8 border border-blue-100 card-hover">
+                    <div class="w-40 h-40 bg-blue-100 rounded-2xl mb-6 sm:mb-0 sm:mr-8 flex-shrink-0 flex items-center justify-center shadow-inner">
+                        <img src="Jay Desai.jpeg" alt="Dr. Jay Desai Image" class="w-full h-full object-cover object-center opacity-90" onerror="this.src='https://placehold.co/900x500/1e293b/ffffff?text=Fetal+Vision+Reception'">
+                    </div>
+                    <div class="text-center sm:text-left">
+                        <span class="text-xs font-bold uppercase tracking-wider text-blue-600 bg-blue-100/60 px-3 py-1 rounded-full">Fetal Medicine Specialist</span>
+                        <h3 class="text-2xl font-bold text-gray-900 mt-2">Dr. Jay Desai</h3>
+                        <p class="text-xs font-semibold text-purple-700 mb-3">MBBS, DGO, Fetal Medicine Specialist</p>
+                        <p class="text-sm text-gray-600 leading-relaxed">Over 10 years of experience in fetal medicine specializing in fetal echocardiography, fetal neurosonography.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Centre Tour (Slideshow Section) -->
+    <section id="tour" class="py-20 bg-purple-50/60">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <span class="text-blue-600 font-bold uppercase tracking-wider text-xs">Infrastructure</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-gray-900 mt-1">Tour Our Centre</h2>
+                <p class="text-gray-600 text-sm sm:text-base mt-2">Explore our state-of-the-art diagnostic suites, reception lounge, and training hall.</p>
+            </div>
+
+            <div class="relative max-w-5xl mx-auto rounded-3xl overflow-hidden shadow-2xl bg-white border-4 border-white">
+                <!-- Slide Container -->
+                <div id="slides-wrapper" class="relative min-h-[320px] sm:min-h-[480px]">
+                    <!-- Slide 1: Reception -->
+                    <div class="slide active">
+                        <div class="h-[320px] sm:h-[480px] w-full relative overflow-hidden bg-slate-900">
+                            <img src="IMG-20240703-WA0009.jpg" alt="Fetal Vision Reception Lounge" class="w-full h-full object-cover object-center opacity-90" onerror="this.src='https://placehold.co/900x500/1e293b/ffffff?text=Fetal+Vision+Reception'">
+                            <div class="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent p-6 sm:p-8 text-left text-white">
+                                <span class="bg-blue-600 text-[10px] font-bold px-2.5 py-1 rounded-md uppercase tracking-wider mb-2 inline-block">Reception Lounge</span>
+                                <h3 class="text-xl sm:text-2xl font-bold">Patient Reception & Waiting Lounge</h3>
+                                <p class="text-xs sm:text-sm text-gray-200 mt-1 max-w-2xl">Modern, hygienic reception and seating area equipped with patient guidance notices and comfortable amenities.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Slide 2: Scanning Suite -->
+                    <div class="slide">
+                        <div class="h-[320px] sm:h-[480px] w-full relative overflow-hidden bg-slate-900">
+                            <img src="VolusonFV.jpeg" alt="GE Voluson Scanning Suite" class="w-full h-full object-cover object-center opacity-90" onerror="this.src='https://placehold.co/900x500/0f172a/ffffff?text=GE+Ultrasound+Suite'">
+                            <div class="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent p-6 sm:p-8 text-left text-white">
+                                <span class="bg-purple-600 text-[10px] font-bold px-2.5 py-1 rounded-md uppercase tracking-wider mb-2 inline-block">Scanning Suite</span>
+                                <h3 class="text-xl sm:text-2xl font-bold">Advanced Diagnostic Scanning Room</h3>
+                                <p class="text-xs sm:text-sm text-gray-200 mt-1 max-w-2xl">Equipped with GE Healthcare Voluson expert ultrasound machines for 3D/4D imaging and detailed doppler examinations.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Slide 3: Conference Hall -->
+                    <div class="slide">
+                        <div class="h-[320px] sm:h-[480px] w-full relative overflow-hidden bg-slate-900">
+                            <img src="Fetal Vision Conference Room.jpeg" alt="Fetal Vision Conference Room" class="w-full h-full object-cover object-center opacity-90" onerror="this.src='https://placehold.co/900x500/312e81/ffffff?text=Doctor+Seminar+Hall'">
+                            <div class="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent p-6 sm:p-8 text-left text-white">
+                                <span class="bg-pink-600 text-[10px] font-bold px-2.5 py-1 rounded-md uppercase tracking-wider mb-2 inline-block">Academic Training</span>
+                                <h3 class="text-xl sm:text-2xl font-bold">Doctor Seminar & Conference Room</h3>
+                                <p class="text-xs sm:text-sm text-gray-200 mt-1 max-w-2xl">High-tech interactive digital display and conference setup for doctor workshops, masterclasses, and CME training.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Slide 4: Building Exterior -->
+                    <div class="slide">
+                        <div class="h-[320px] sm:h-[480px] w-full relative overflow-hidden bg-slate-900">
+                            <img src="StreetviewFV.jpeg" alt="Times Square Building Exterior" class="w-full h-full object-cover object-center opacity-90" onerror="this.src='https://placehold.co/900x500/0284c7/ffffff?text=Times+Square+Building'">
+                            <div class="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent p-6 sm:p-8 text-left text-white">
+                                <span class="bg-emerald-600 text-[10px] font-bold px-2.5 py-1 rounded-md uppercase tracking-wider mb-2 inline-block">Location</span>
+                                <h3 class="text-xl sm:text-2xl font-bold">Times Square Centre Premises</h3>
+                                <p class="text-xs sm:text-sm text-gray-200 mt-1 max-w-2xl">Easily accessible location with ample parking and modern architectural facilities for patients and visiting doctors.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Navigation Controls -->
+                <button onclick="changeSlide(-1)" class="absolute left-4 top-1/2 -translate-y-1/2 w-11 h-11 rounded-full bg-black/50 hover:bg-black/80 text-white flex items-center justify-center backdrop-blur-sm transition-all z-10 shadow-lg">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <button onclick="changeSlide(1)" class="absolute right-4 top-1/2 -translate-y-1/2 w-11 h-11 rounded-full bg-black/50 hover:bg-black/80 text-white flex items-center justify-center backdrop-blur-sm transition-all z-10 shadow-lg">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+
+                <!-- Indicator Dots -->
+                <div class="absolute bottom-4 right-6 flex space-x-2 z-10">
+                    <button onclick="setSlide(0)" class="dot w-3 h-3 rounded-full bg-white/50 hover:bg-white transition-all"></button>
+                    <button onclick="setSlide(1)" class="dot w-3 h-3 rounded-full bg-white/50 hover:bg-white transition-all"></button>
+                    <button onclick="setSlide(2)" class="dot w-3 h-3 rounded-full bg-white/50 hover:bg-white transition-all"></button>
+                    <button onclick="setSlide(3)" class="dot w-3 h-3 rounded-full bg-white/50 hover:bg-white transition-all"></button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Facilities Section -->
+    <section id="facilities" class="py-24 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <span class="text-pink-600 font-bold uppercase tracking-wider text-xs">Services & Technology</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-gray-900 mt-1">Available Facilities</h2>
+                <div class="w-20 h-1 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto mt-4 rounded-full"></div>
+                <p class="text-gray-600 max-w-xl mx-auto mt-4 text-sm sm:text-base">Click on any facility below to open detailed information about our services and training modules.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Facility Item 1 -->
+                <div onclick="openFacility('ultrasound')" class="bg-white rounded-3xl overflow-hidden border border-gray-100 card-hover cursor-pointer group">
+                    <div class="h-56 relative overflow-hidden">
+                        <img src="Hope IVF Logo.png" alt="3D and 4D Scans" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.src='https://placehold.co/400x300/2563eb/ffffff?text=4D+Scans'">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-transparent"></div>
+                        <span class="absolute top-4 right-4 bg-white/80 text-gray-900 text-[10px] font-bold px-3 py-1 rounded-full backdrop-blur-md">Click for Details</span>
+                        <div class="absolute bottom-3 left-4 text-white">
+                            <span class="text-xs font-medium text-blue-300">Hope IVF</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-900 group-hover:text-blue-600 transition-colors">Infertility Treatment</h3>
+                        <p class="text-sm text-gray-600 mt-2 leading-relaxed">IVF, IUI and other Artificial Reproductive Techniques in association with HOPE IVF</p>
+                        <span class="inline-flex items-center text-xs font-bold text-blue-600 mt-4">Read Full Details <i class="fas fa-arrow-right ml-2 text-[10px]"></i></span>
+                    </div>
+                </div>
+
+                <!-- Facility Item 2 -->
+                <div onclick="openFacility('fetal-echo')" class="bg-white rounded-3xl overflow-hidden border border-gray-100 card-hover cursor-pointer group">
+                    <div class="h-56 relative overflow-hidden">
+                        <img src="IMG-20240703-WA0015.jpg" alt="GE Voluson Echocardiography Machine" class="w-full h-full justify-content: center; object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.src='https://placehold.co/400x300/7c3aed/ffffff?text=Fetal+Echo'">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-transparent"></div>
+                        <span class="absolute top-4 right-4 bg-white/80 text-gray-900 text-[10px] font-bold px-3 py-1 rounded-full backdrop-blur-md">Click for Details</span>
+                        <div class="absolute bottom-3 left-4 text-white">
+                            <span class="text-xs font-medium text-purple-300">GE Voluson Echocardiography Machine</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-900 group-hover:text-purple-600 transition-colors">3D, 4D Ultrasonography and other fetal medicine procedures</h3>
+                        <p class="text-sm text-gray-600 mt-2 leading-relaxed">High-definition target anomaly scans, NT screenings, growth dopplers, and early pregnancy scans, amniocentesis and other procedures</p>
+                        <span class="inline-flex items-center text-xs font-bold text-purple-600 mt-4">Read Full Details <i class="fas fa-arrow-right ml-2 text-[10px]"></i></span>
+                    </div>
+                </div>
+
+                <!-- Facility Item 3 -->
+                <div onclick="openFacility('training-lab')" class="bg-white rounded-3xl overflow-hidden border border-gray-100 card-hover cursor-pointer group">
+                    <div class="h-56 relative overflow-hidden">
+                        <img src="Fetal Vision Conference Room.jpeg" alt="Doctor Training Conference Hall" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.src='https://placehold.co/400x300/db2777/ffffff?text=Training+Lab'">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-transparent"></div>
+                        <span class="absolute top-4 right-4 bg-white/80 text-gray-900 text-[10px] font-bold px-3 py-1 rounded-full backdrop-blur-md">Click for Details</span>
+                        <div class="absolute bottom-3 left-4 text-white">
+                            <span class="text-xs font-medium text-pink-300">Seminar Hall</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-900 group-hover:text-pink-600 transition-colors">Simulation and Training Lab</h3>
+                        <p class="text-sm text-gray-600 mt-2 leading-relaxed">Hands-on simulator training, live demonstration workshops, and clinical fellowships for physicians.</p>
+                        <span class="inline-flex items-center text-xs font-bold text-pink-600 mt-4">Read Full Details <i class="fas fa-arrow-right ml-2 text-[10px]"></i></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Booking & Registration Section (Google Forms Integration) -->
+    <section id="booking" class="py-24 gradient-hero border-t border-purple-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-2 gap-12">
+                
+                <!-- Patient Booking Box -->
+                <div class="bg-white rounded-3xl p-6 sm:p-8 shadow-xl border border-blue-100 flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center space-x-3 mb-4">
+                            <div class="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 font-bold">
+                                <i class="fas fa-calendar-alt"></i>
+                            </div>
+                            <h2 class="text-2xl font-bold text-gray-900">Patient Appointment Booking</h2>
+                        </div>
+                        <p class="text-sm text-gray-600 mb-6">Schedule your fetal scan or consultation. Submit your details through our form below and our front desk will confirm your appointment.</p>
+                        
+                        <!-- Google Form Embed Container -->
+                        <div class="form-container rounded-2xl border border-gray-200 bg-gray-50">
+                            <!-- Replace src attribute below with your active Google Form embed link -->
+                            <iframe src="https://forms.gle/5HgLSBKqiwzTqSSo6" title="Patient Booking Form">Loading Form…</iframe>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Doctor Training Registration Box -->
+                <div id="training" class="bg-white rounded-3xl p-6 sm:p-8 shadow-xl border border-purple-100 flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center space-x-3 mb-4">
+                            <div class="w-10 h-10 rounded-full bg-purple-100 flex items-center justify-center text-purple-600 font-bold">
+                                <i class="fas fa-user-graduate"></i>
+                            </div>
+                            <h2 class="text-2xl font-bold text-gray-900">CME Registration</h2>
+                        </div>
+                        <p class="text-sm text-gray-600 mb-6">Register for upcoming ultrasound conferences, workshops, and CME training sessions. Certification provided upon completion.
+                            <br>
+                            Kindly contact us for further details on our email and WhatsApp
+                        </p>
+                        
+                        <!-- Google Form Embed Container -->
+                        <div class="form-container rounded-2xl border border-gray-200 bg-gray-50">
+                            <!-- Replace src attribute below with your active Google Form embed link -->
+                            <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdTvyBEBD7kn8lULFKQlCzufK-lkMSLe_xX5MZMfrIkRkPupw/viewform?usp=header" title="Doctor Registration Form">Loading Form…</iframe>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 text-white pt-16 pb-12 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-10 mb-12">
+                
+                <!-- Brand Info -->
+                <div class="space-y-4">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-10 h-10 bg-white rounded-xl flex items-center justify-center text-white text-sm font-bold">
+                            <img src="Fetal Vision Logo.png">
+                        </div>
+                        <span class="text-xl font-bold tracking-tight text-white">Fetal Vision</span>
+                    </div>
+                    <p class="text-xs text-gray-400 leading-relaxed">A Unit of Ashwini Healthcare. Dedicated to advancing maternal-fetal diagnostic medicine and elevating clinical skills through expert-led training.</p>
+                </div>
+
+                <!-- Direct Contact Info -->
+                <div>
+                    <h4 class="text-sm font-bold uppercase tracking-wider text-purple-400 mb-4">Contact Us</h4>
+                    <ul class="space-y-3 text-xs text-gray-300">
+                        <li>
+                            <a href="tel:+919157319209" class="flex items-center hover:text-blue-400 transition-colors">
+                                <i class="fas fa-phone-alt w-6 text-blue-400"></i> +91 91573 19209
+                            </a>
+                        </li>
+                        <li>
+                            <a href="mailto:fetalvisionhope@gmail.com" class="flex items-center hover:text-purple-400 transition-colors">
+                                <i class="fas fa-envelope w-6 text-purple-400"></i> fetalvisionhope@gmail.com
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://wa.me/9157319209" target="_blank" rel="noopener" class="flex items-center hover:text-green-400 transition-colors">
+                                <i class="fab fa-whatsapp w-6 text-green-400"></i> WhatsApp Chat
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://maps.app.goo.gl/vpkHiHHWqGZY5x1h8" target="_blank" rel="noopener" class="flex items-center hover:text-pink-400 transition-colors">
+                                <i class="fas fa-map-marker-alt w-6 text-pink-400"></i> Open in Google Maps
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Social Media Handles -->
+                <div>
+                    <h4 class="text-sm font-bold uppercase tracking-wider text-purple-400 mb-4">Connect With Us</h4>
+                    <p class="text-xs text-gray-400 mb-4">Follow our social handles for patient updates and lecture schedules.</p>
+                    <div class="flex space-x-3">
+                        <a href="https://www.instagram.com/fetal_vision_vapi/" target="_blank" rel="noopener" class="w-9 h-9 rounded-full bg-slate-800 flex items-center justify-center hover:bg-pink-600 transition-colors" title="Instagram">
+                            <i class="fab fa-instagram text-sm"></i>
+                        </a>
+                        <a href="https://www.facebook.com/share/1957ciugty/" target="_blank" rel="noopener" class="w-9 h-9 rounded-full bg-slate-800 flex items-center justify-center hover:bg-blue-600 transition-colors" title="Facebook">
+                            <i class="fab fa-facebook-f text-sm"></i>
+                        </a>
+                        <a href="https://in.linkedin.com/company/fetal-vision-fetal-medicine-center" target="_blank" rel="noopener" class="w-9 h-9 rounded-full bg-slate-800 flex items-center justify-center hover:bg-blue-700 transition-colors" title="LinkedIn">
+                            <i class="fab fa-linkedin-in text-sm"></i>
+                        </a>
+                        <a href="https://youtube.com/@fetalvisionvapi?si=GWv4xblWobQp-VS_" target="_blank" rel="noopener" class="w-9 h-9 rounded-full bg-slate-800 flex items-center justify-center hover:bg-red-600 transition-colors" title="YouTube">
+                            <i class="fab fa-youtube text-sm"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Quick Navigation Links -->
+                <div>
+                    <h4 class="text-sm font-bold uppercase tracking-wider text-purple-400 mb-4">Quick Links</h4>
+                    <ul class="space-y-2 text-xs text-gray-400">
+                        <li><a href="#home" class="hover:text-white">Home</a></li>
+                        <li><a href="#about" class="hover:text-white">About Doctors</a></li>
+                        <li><a href="#facilities" class="hover:text-white">Scanning Facilities</a></li>
+                        <li><a href="#booking" class="hover:text-white">Book Appointment</a></li>
+                        <li><a href="#training" class="hover:text-white">Doctor Seminars</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="border-t border-slate-800 pt-8 text-center text-xs text-gray-500">
+                &copy; 2026 Fetal Vision Centre. All Rights Reserved. Designed for patient healthcare and professional education.
+            </div>
+        </div>
+    </footer>
+
+    <!-- Facility Modal Sub-Pages -->
+    <div id="modal-ultrasound" class="modal p-4">
+        <div class="bg-white max-w-2xl w-full rounded-3xl overflow-hidden shadow-2xl relative my-auto">
+            <div class="h-48 relative">
+                <img src="Hope IVF Logo.png" alt="Ultrasound Detail" class="w-full h-full object-cover" onerror="this.src='https://placehold.co/600x200/2563eb/ffffff?text=4D+Ultrasound'">
+                <div class="absolute inset-0 bg-gradient-to-t from-slate-900/90 via-slate-900/40 to-transparent p-6 text-white flex flex-col justify-end">
+                    <button onclick="closeModals()" class="absolute top-4 right-4 bg-black/40 hover:bg-black/70 rounded-full w-8 h-8 flex items-center justify-center text-lg">&times;</button>
+                    <h3 class="text-2xl font-bold"></h3>
+                </div>
+            </div>
+            <div class="p-6 sm:p-8 space-y-4">
+                <p class="text-sm text-gray-600 leading-relaxed">Our Centre also offers Infertility treatment along with other assisted reproductive techniques in association with HOPE IVF.</p>
+                <h4 class="font-bold text-gray-900 text-sm">Facilities offered</h4>
+                <ul class="list-disc list-inside text-xs text-gray-600 space-y-1.5">
+                    <li>In-Vitro Fertilization (IVF)</li>
+                    <li>Intrauterine Insemination (IUI)</li>
+                    <li>Semen Analysis</li>
+                    <li>Follicular Study</li>
+                    <li>Ovum Pickup</li>
+                    <li>Embryo Transfer</li>
+                </ul>
+                <div class="pt-4 flex justify-end">
+                    <button onclick="closeModals()" class="bg-gray-900 text-white px-6 py-2.5 rounded-full text-xs font-bold">Close Details</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal-fetal-echo" class="modal p-4">
+        <div class="bg-white max-w-2xl w-full rounded-3xl overflow-hidden shadow-2xl relative my-auto">
+            <div class="h-48 relative">
+                <img src="IMG-20240703-WA0015.jpg" alt="Fetal Echo Equipment" class="w-full h-full object-cover" onerror="this.src='https://placehold.co/600x200/7c3aed/ffffff?text=Fetal+Echo'">
+                <div class="absolute inset-0 bg-gradient-to-t from-slate-900/90 via-slate-900/40 to-transparent p-6 text-white flex flex-col justify-end">
+                    <button onclick="closeModals()" class="absolute top-4 right-4 bg-black/40 hover:bg-black/70 rounded-full w-8 h-8 flex items-center justify-center text-lg">&times;</button>
+                    <h3 class="text-2xl font-bold">3D, 4D Ultrasonography and other fetal medicine procedures
+                    </h3>
+                </div>
+            </div>
+            <div class="p-6 sm:p-8 space-y-4">
+                <p class="text-sm text-gray-600 leading-relaxed">Our diagnostic scan suites are equipped with state-of-the-art GE Healthcare Voluson volumetric transducers to perform targeted evaluations at every stage of pregnancy. We also offer other invasive and non- invasive procedures for assessment of fetal well being</p>
+                <h4 class="font-bold text-gray-900 text-sm">Facilities Offered:</h4>
+                <ul class="list-disc list-inside text-xs text-gray-600 space-y-1.5">
+                    <li>Early Pregnancy / Viability Scan (6-10 Weeks)</li>
+                    <li>Nuchal Translucency (NT) & First Trimester Anomaly Scan</li>
+                    <li>Targeted Anomaly Scan (Level-II / TIFFA)</li>
+                    <li>Fetal Growth, Doppler & Amniotic Fluid Assessment</li>
+                    <li>Fetal Echocardiography</li>
+                    <li>Fetal Neurosonography</li>
+                    <li>Amniocentesis</li>
+                    <li>Chorionic Villus Sampling</li>
+                    <li>Dual-marker Test</li>
+                    <li>Quadruple-marker test</li>
+                    <li>Non-Invasive Prenatal Testing(NIPT)</li>
+                    <li>Fetal Reduction</li>
+                </ul>
+                <div class="pt-4 flex justify-end">
+                    <button onclick="closeModals()" class="bg-gray-900 text-white px-6 py-2.5 rounded-full text-xs font-bold">Close Details</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal-training-lab" class="modal p-4">
+        <div class="bg-white max-w-2xl w-full rounded-3xl overflow-hidden shadow-2xl relative my-auto">
+            <div class="h-48 relative">
+                <img src="Fetal Vision Conference Room.jpeg" alt="Doctor Training Room" class="w-full h-full object-cover" onerror="this.src='https://placehold.co/600x200/db2777/ffffff?text=Training+Lab'">
+                <div class="absolute inset-0 bg-gradient-to-t from-slate-900/90 via-slate-900/40 to-transparent p-6 text-white flex flex-col justify-end">
+                    <button onclick="closeModals()" class="absolute top-4 right-4 bg-black/40 hover:bg-black/70 rounded-full w-8 h-8 flex items-center justify-center text-lg">&times;</button>
+                    <h3 class="text-2xl font-bold">Simulation & Training Lab</h3>
+                </div>
+            </div>
+            <div class="p-6 sm:p-8 space-y-4">
+                <p class="text-sm text-gray-600 leading-relaxed">Fetal Vision is committed to academic training for Obstetricians, Radiologists, and Sonographers seeking advanced competency in fetal medicine.</p>
+                <h4 class="font-bold text-gray-900 text-sm">Training Programs Available:</h4>
+                <ul class="list-disc list-inside text-xs text-gray-600 space-y-1.5">
+                    <li>Hands-on Fetal Sonography</li>
+                    <li>Basic & Advanced Obstetric Doppler Workshops</li>
+                    <li>3D/4D Volume Scanning & Post-Processing Seminars</li>
+                    <li>Clinical Observerships & Certification Programs</li>
+                </ul>
+                <br>
+                Kindly contact us on our email and WhatsApp for further details regarding the programs
+                <div class="pt-4 flex justify-end">
+                    <button onclick="closeModals()" class="bg-gray-900 text-white px-6 py-2.5 rounded-full text-xs font-bold">Close Details</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript Logic -->
+    <script>
+        // Mobile Navigation Toggle
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        }
+
+        // Slideshow Logic
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const dots = document.querySelectorAll('.dot');
+
+        function showSlide(index) {
+            if (index >= slides.length) currentSlide = 0;
+            else if (index < 0) currentSlide = slides.length - 1;
+            else currentSlide = index;
+
+            slides.forEach((slide, i) => {
+                if (i === currentSlide) {
+                    slide.classList.add('active');
+                } else {
+                    slide.classList.remove('active');
+                }
+            });
+
+            dots.forEach((dot, i) => {
+                if (i === currentSlide) {
+                    dot.classList.remove('bg-white/50');
+                    dot.classList.add('bg-white');
+                } else {
+                    dot.classList.remove('bg-white');
+                    dot.classList.add('bg-white/50');
+                }
+            });
+        }
+
+        function changeSlide(step) {
+            showSlide(currentSlide + step);
+        }
+
+        function setSlide(index) {
+            showSlide(index);
+        }
+
+        // Automatic slideshow timer
+        setInterval(() => {
+            changeSlide(1);
+        }, 5000);
+
+        // Facility Sub-Page Modal Logic
+        function openFacility(id) {
+            const modal = document.getElementById('modal-' + id);
+            if (modal) {
+                modal.classList.add('active-page');
+                document.body.style.overflow = 'hidden';
+            }
+        }
+
+        function closeModals() {
+            document.querySelectorAll('.modal').forEach(m => m.classList.remove('active-page'));
+            document.body.style.overflow = 'auto';
+        }
+
+        window.onclick = function(event) {
+            if (event.target.classList.contains('modal')) {
+                closeModals();
+            }
+        }
+    </script>
+</body>
+</html>
